@@ -1,14 +1,22 @@
-# Configure the AWS provider
-provider "aws" {
-  region = "eu-west-1"
+AWSTemplateFormatVersion: '2010-09-09'
+Description: S3 bucket with public read ACL
+
 Resources:
-  MyEC2Instance:
-    Type: AWS::EC2::Instance
+  PublicReadS3Bucket:
+    Type: AWS::S3::Bucket
     Properties:
-      ImageId: ami-0abcdef1234567890 # Replace with a valid AMI ID for your region
-      InstanceType: t2.micro
-      MetadataOptions:
-        HttpTokens: optional # This enables both IMDSv1 and IMDSv2
-        HttpPutResponseHopLimit: 1 # Default value, can be adjusted if needed
-      # ... other instance properties like KeyName, SecurityGroupIds, etc.
-}
+      BucketName: your-unique-public-read-bucket-name # Replace with a globally unique bucket name
+      AccessControl: PublicRead
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerPreferred # Or ObjectWriter, depending on your needs
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+
+Outputs:
+  BucketName:
+    Description: Name of the S3 bucket
+    Value: !Ref PublicReadS3Bucket
