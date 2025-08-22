@@ -15,5 +15,5 @@ jobs:
         env:
           PRISMA_API_URL: https://api2.prismacloud.io
         with:
-          api-key: ${{ secrets.PC_secrets}}
+          api-key: ${{ secrets.PC_SECRET}}
           use_enforcement_rules: true
