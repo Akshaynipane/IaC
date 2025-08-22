@@ -28,9 +28,14 @@ resource "aws_security_group" "instance" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
     cidr_blocks = [var.mgmt_ip]
   }
-
   # Outbound web for package downloading
   egress {
     from_port   = 80
@@ -72,5 +77,6 @@ resource "aws_instance" "example" {
   tags = {
     Name = "EC2EXAMPLE"
   }
+
 
 }
