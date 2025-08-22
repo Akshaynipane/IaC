@@ -1,5 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Description: S3 bucket with public read ACL
+AWSTemplateFormatVersion: '2010-09-09
 
 Resources:
   PublicReadS3Bucket:
