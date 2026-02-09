@@ -17,5 +17,5 @@ Resources:
 
 Outputs:
   BucketName:
-    Description: Name of the S3 bucket
+    Description: 
     Value: !Ref PublicReadS3Bucket
